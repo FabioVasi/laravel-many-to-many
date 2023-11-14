@@ -78,12 +78,22 @@
             <div class="mb-3">
               <label for="technologies" class="form-label">Technologies</label>
               <select multiple class="form-select" name="technologies[]" id="technologies">
-                    <option selected disabled>Select a Technology</option>
-                    @forelse($technologies as $technology)
-                    <option value="{{$technology->id}}">{{$technology->name}}</option>
-                    @empty
+                    <option disabled>Select a Technology</option>
 
-                    @endforelse
+                    @foreach($technologies as $technology)
+                    
+                    @if($errors->any())
+
+                    <option value="{{$technology->id}}" {{in_array($technology->id, old('technologies', [])) ? 'selected' : ''}}>{{$technology->name}}</option>
+
+                    @else
+
+                    <option value="{{$technology->id}}" {{$project->technologies->contains($technology) ? 'selected' : ''}}>{{$technology->name}}</option>
+
+                    @endif
+
+                    @endforeach
+                    
                 </select>
             </div>
             @error('technologies')
