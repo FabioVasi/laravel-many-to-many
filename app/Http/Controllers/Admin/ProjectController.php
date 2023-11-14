@@ -70,7 +70,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+
         $technologies = Technology::all();
+        
         return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
@@ -104,6 +106,8 @@ class ProjectController extends Controller
         if ($project->image) {
             Storage::delete($project->image);
         }
+
+        $project->technologies()->detach();
 
         $project->delete();
 
