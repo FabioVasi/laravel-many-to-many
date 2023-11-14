@@ -76,6 +76,21 @@
             @enderror
 
             <div class="mb-3">
+              <label for="technologies" class="form-label">Technologies</label>
+              <select multiple class="form-select" name="technologies[]" id="technologies">
+                    <option selected disabled>Select a Technology</option>
+                    @forelse($technologies as $technology)
+                    <option value="{{$technology->id}}">{{$technology->name}}</option>
+                    @empty
+
+                    @endforelse
+                </select>
+            </div>
+            @error('technologies')
+                <p class="text-danger">{{$message}}</p>
+            @enderror
+
+            <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content" rows="3">{{old('content', $project->content)}}</textarea>
                 <small id="contentHelp" class="form-text">Type your content</small>

@@ -23,7 +23,7 @@
 
                     <ul class="list-unstyled">
                         @foreach($project->technologies as $technology)
-                        <li class="fw-medium">Technology: {{$project->technology ? $project->technology->name : 'Undefined'}}</li>
+                        <li class="fw-medium">Technology: {{$technology->name}}</li>
                         @endforeach
                     </ul>
                     
