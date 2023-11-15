@@ -17,14 +17,13 @@ class TypeSeeder extends Seeder
         $types = ['Programming', 'Fullstack', 'Frontend', 'Backend', 'API'];
 
         foreach ($types as $type) {
-            $new_type = new Type();
-            $new_type->name = $type;
-            $new_type->slug = Str::slug($new_type->name, '-');
-            $new_type->save();
-            //if(!Type::where('name','=',$type)->exists()){
-                //lo devo inserire
-                
-            //}   
+            
+            if(!Type::where('name','=',$type)->exists()){            
+                $new_type = new Type();
+                $new_type->name = $type;
+                $new_type->slug = Str::slug($new_type->name, '-');
+                $new_type->save();
+            }   
         }
     }
 }
